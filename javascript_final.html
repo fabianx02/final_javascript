@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Ingreso a la Marina</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Formulario de Ingreso a la Marina</h2>
+        <p>📌 Instrucciones: Complete todos los campos con información verídica y en letra legible. Adjunte los documentos requeridos.</p>
+        
+        <form id="formularioIngreso">
+            <h4>1. DATOS PERSONALES</h4>
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" class="form-control" id="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                <input type="date" class="form-control" id="fecha_nacimiento" required>
+            </div>
+            <div class="form-group">
+                <label for="lugar_nacimiento">Lugar de nacimiento:</label>
+                <input type="text" class="form-control" id="lugar_nacimiento" required>
+            </div>
+            <div class="form-group">
+                <label for="nacionalidad">Nacionalidad:</label>
+                <input type="text" class="form-control" id="nacionalidad" required>
+            </div>
+            <div class="form-group">
+                <label for="documento_identidad">Número de documento de identidad:</label>
+                <input type="text" class="form-control" id="documento_identidad" required>
+            </div>
+            <div class="form-group">
+                <label>Estado civil:</label>
+                <div>
+                    <label class="form-check-label"><input type="radio" class="form-check-input" name="estado_civil" value="Soltero" required> Soltero</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="estado_civil" value="Casado"> Casado</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="estado_civil" value="Otro"> Otro</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección actual:</label>
+                <input type="text" class="form-control" id="direccion" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" class="form-control" id="telefono" required>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" class="form-control" id="correo" required>
+            </div>
+
+            <h4>2. INFORMACIÓN ACADÉMICA</h4>
+            <div class="form-group">
+                <label>Nivel de estudios alcanzado:</label>
+                <div>
+                    <label class="form-check-label"><input type="radio" class="form-check-input" name="nivel_estudios" value="Secundaria" required> Secundaria</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="nivel_estudios" value="Técnica"> Técnica</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="nivel_estudios" value="Universitaria"> Universitaria</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="institucion_educativa">Institución educativa:</label>
+                <input type="text" class="form-control" id="institucion_educativa" required>
+            </div>
+            <div class="form-group">
+                <label for="titulo_obtenido">Título obtenido (si aplica):</label>
+                <input type="text" class="form-control" id="titulo_obtenido">
+            </div>
+            <div class="form-group">
+                <label for="ano_graduacion">Año de graduación:</label>
+                <input type="number" class="form-control" id="ano_graduacion" required>
+            </div>
+
+            <h4>3. DATOS FAMILIARES</h4>
+            <div class="form-group">
+                <label for="nombre_padre">Nombre del padre:</label>
+                <input type="text" class="form-control" id="nombre_padre" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre_madre">Nombre de la madre:</label>
+                <input type="text" class="form-control" id="nombre_madre" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre_conyuge">Nombre del cónyuge (si aplica):</label>
+                <input type="text" class="form-control" id="nombre_conyuge">
+            </div>
+            <div class="form-group">
+                <label for="numero_hijos">Número de hijos (si aplica):</label>
+                <input type="number" class="form-control" id="numero_hijos">
+            </div>
+
+            <h4>4. ANTECEDENTES MÉDICOS</h4>
+            <div class="form-group">
+                <label>¿Padece de alguna enfermedad crónica?</label>
+                <div>
+                    <label class="form-check-label"><input type="radio" class="form-check-input" name="enfermedad_cronica" value="Sí" required> Sí</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="enfermedad_cronica" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="especificar_enfermedad">Especificar:</label>
+                <input type="text" class="form-control" id="especificar_enfermedad">
+            </div>
+            <div class="form-group">
+                <label>¿Ha sido operado en los últimos 5 años?</label>
+                <div>
+                    <label class="form-check-label"><input type="radio" class="form-check-input" name="operado" value="Sí" required> Sí</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="operado" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="especificar_operacion">Especificar:</label>
+                <input type="text" class="form-control" id="especificar_operacion">
+            </div>
+            <div class="form-group">
+                <label>¿Tiene alergias?</label>
+                <div>
+                    <label class="form-check-label"><input type="radio" class="form-check-input" name="alergias" value="Sí" required> Sí</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="alergias" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="especificar_alergias">Especificar:</label>
+                <input type="text" class="form-control" id="especificar_alergias">
+            </div>
+            <div class="form-group">
+                <label>¿Usa lentes o algún dispositivo médico?</label>
+                <div>
+                    <label class="form-check-label"><input type="radio" class="form-check-input" name="dispositivo_medico" value="Sí" required> Sí</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="dispositivo_medico" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="especificar_dispositivo">Especificar:</label>
+                <input type="text" class="form-control" id="especificar_dispositivo">
+            </div>
+
+            <h4>5. ANTECEDENTES JUDICIALES</h4>
+            <div class="form-group">
+                <label>¿Ha sido arrestado o procesado legalmente?</label>
+                <div>
+                    <label class="form-check-label"><input type="radio" class="form-check-input" name="antecedentes_judiciales" value="Sí" required> Sí</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="antecedentes_judiciales" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="explicar_antecedentes">En caso afirmativo, explicar:</label>
+                <input type="text" class="form-control" id="explicar_antecedentes">
+            </div>
+
+            <h4>6. EXPERIENCIA MILITAR O MARÍTIMA (si aplica)</h4>
+            <div class="form-group">
+                <label>¿Ha pertenecido a otra fuerza armada?</label>
+                <div>
+                    <label class="form-check-label"><input type="radio" class="form-check-input" name="fuerza_armada" value="Sí" required> Sí</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="fuerza_armada" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="institucion_fuerza_armada">Institución:</label>
+                <input type="text" class="form-control" id="institucion_fuerza_armada">
+            </div>
+            <div class="form-group">
+                <label>¿Ha realizado cursos o capacitaciones en seguridad marítima?</label>
+                <div>
+                    <label class="form-check-label"><input type="radio" class="form-check-input" name="seguridad_maritima" value="Sí" required> Sí</label>
+                    <label class="form-check-label ml-3"><input type="radio" class="form-check-input" name="seguridad_maritima" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="especificar_cursos">Especificar:</label>
+                <input type="text" class="form-control" id="especificar_cursos">
+            </div>
+
+            <h4>7. MOTIVACIÓN PARA INGRESAR A LA MARINA</h4>
+            <div class="form-group">
+                <label for="motivacion">Explique brevemente por qué desea unirse a la Marina:</label>
+                <textarea class="form-control" id="motivacion" rows="3" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="button" class="btn btn-secondary" onclick="rellenarFormulario()">Rellenar con datos de ejemplo</button>
+            <button type="button" class="btn btn-danger" onclick="limpiarFormulario()">Limpiar</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
