@@ -50,6 +50,7 @@ window.onload = function() {
     };
 
     localStorage.setItem('datosEjemplo', JSON.stringify(datosEjemplo));
+    cargarListaAspirantes();
 };
 
 // Función para rellenar el formulario con datos de ejemplo
@@ -105,73 +106,105 @@ function limpiarFormulario() {
     document.getElementById('formularioIngreso').reset();
 }
 
+// Función para cargar y mostrar la lista de aspirantes
+function cargarListaAspirantes() {
+    const tablaAspirantes = document.getElementById('tablaAspirantes').getElementsByTagName('tbody')[0];
+    tablaAspirantes.innerHTML = ''; // Limpiar la tabla antes de llenarla
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const clave = localStorage.key(i);
+        const datosFormulario = JSON.parse(localStorage.getItem(clave));
+
+        if (datosFormulario && datosFormulario.datosPersonales) {
+            const fila = tablaAspirantes.insertRow();
+            fila.insertCell(0).innerText = datosFormulario.datosPersonales.nombre;
+            fila.insertCell(1).innerText = datosFormulario.datosPersonales.fecha_nacimiento;
+            fila.insertCell(2).innerText = datosFormulario.datosPersonales.lugar_nacimiento;
+            fila.insertCell(3).innerText = datosFormulario.datosPersonales.nacionalidad;
+            fila.insertCell(4).innerText = datosFormulario.datosPersonales.documento_identidad;
+            fila.insertCell(5).innerText = datosFormulario.datosPersonales.correo;
+        }
+    }
+}
+
 document.getElementById('formularioIngreso').addEventListener('submit', function(event) {
     event.preventDefault(); // Evitar el envío del formulario
 
-    const datosPersonales = {
-        nombre: document.getElementById('nombre').value,
-        fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
-        lugar_nacimiento: document.getElementById('lugar_nacimiento').value,
-        nacionalidad: document.getElementById('nacionalidad').value,
-        documento_identidad: document.getElementById('documento_identidad').value,
-        estado_civil: document.querySelector('input[name="estado_civil"]:checked').value,
-        direccion: document.getElementById('direccion').value,
-        telefono: document.getElementById('telefono').value,
-        correo: document.getElementById('correo').value
-    };
+    const form = document.getElementById('formularioIngreso');
+    if ($(form).parsley().isValid()) {
+        try {
+            const datosPersonales = {
+                nombre: document.getElementById('nombre').value,
+                fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
+                lugar_nacimiento: document.getElementById('lugar_nacimiento').value,
+                nacionalidad: document.getElementById('nacionalidad').value,
+                documento_identidad: document.getElementById('documento_identidad').value,
+                estado_civil: document.querySelector('input[name="estado_civil"]:checked').value,
+                direccion: document.getElementById('direccion').value,
+                telefono: document.getElementById('telefono').value,
+                correo: document.getElementById('correo').value
+            };
 
-    const informacionAcademica = {
-        nivel_estudios: document.querySelector('input[name="nivel_estudios"]:checked').value,
-        institucion_educativa: document.getElementById('institucion_educativa').value,
-        titulo_obtenido: document.getElementById('titulo_obtenido').value,
-        ano_graduacion: document.getElementById('ano_graduacion').value
-    };
+            const informacionAcademica = {
+                nivel_estudios: document.querySelector('input[name="nivel_estudios"]:checked').value,
+                institucion_educativa: document.getElementById('institucion_educativa').value,
+                titulo_obtenido: document.getElementById('titulo_obtenido').value,
+                ano_graduacion: document.getElementById('ano_graduacion').value
+            };
 
-    const datosFamiliares = {
-        nombre_padre: document.getElementById('nombre_padre').value,
-        nombre_madre: document.getElementById('nombre_madre').value,
-        nombre_conyuge: document.getElementById('nombre_conyuge').value,
-        numero_hijos: document.getElementById('numero_hijos').value
-    };
+            const datosFamiliares = {
+                nombre_padre: document.getElementById('nombre_padre').value,
+                nombre_madre: document.getElementById('nombre_madre').value,
+                nombre_conyuge: document.getElementById('nombre_conyuge').value,
+                numero_hijos: document.getElementById('numero_hijos').value
+            };
 
-    const antecedentesMedicos = {
-        enfermedad_cronica: document.querySelector('input[name="enfermedad_cronica"]:checked').value,
-        especificar_enfermedad: document.getElementById('especificar_enfermedad').value,
-        operado: document.querySelector('input[name="operado"]:checked').value,
-        especificar_operacion: document.getElementById('especificar_operacion').value,
-        alergias: document.querySelector('input[name="alergias"]:checked').value,
-        especificar_alergias: document.getElementById('especificar_alergias').value,
-        dispositivo_medico: document.querySelector('input[name="dispositivo_medico"]:checked').value,
-        especificar_dispositivo: document.getElementById('especificar_dispositivo').value
-    };
+            const antecedentesMedicos = {
+                enfermedad_cronica: document.querySelector('input[name="enfermedad_cronica"]:checked').value,
+                especificar_enfermedad: document.getElementById('especificar_enfermedad').value,
+                operado: document.querySelector('input[name="operado"]:checked').value,
+                especificar_operacion: document.getElementById('especificar_operacion').value,
+                alergias: document.querySelector('input[name="alergias"]:checked').value,
+                especificar_alergias: document.getElementById('especificar_alergias').value,
+                dispositivo_medico: document.querySelector('input[name="dispositivo_medico"]:checked').value,
+                especificar_dispositivo: document.getElementById('especificar_dispositivo').value
+            };
 
-    const antecedentesJudiciales = {
-        antecedentes_judiciales: document.querySelector('input[name="antecedentes_judiciales"]:checked').value,
-        explicar_antecedentes: document.getElementById('explicar_antecedentes').value
-    };
+            const antecedentesJudiciales = {
+                antecedentes_judiciales: document.querySelector('input[name="antecedentes_judiciales"]:checked').value,
+                explicar_antecedentes: document.getElementById('explicar_antecedentes').value
+            };
 
-    const experienciaMilitar = {
-        fuerza_armada: document.querySelector('input[name="fuerza_armada"]:checked').value,
-        institucion_fuerza_armada: document.getElementById('institucion_fuerza_armada').value,
-        seguridad_maritima: document.querySelector('input[name="seguridad_maritima"]:checked').value,
-        especificar_cursos: document.getElementById('especificar_cursos').value
-    };
+            const experienciaMilitar = {
+                fuerza_armada: document.querySelector('input[name="fuerza_armada"]:checked').value,
+                institucion_fuerza_armada: document.getElementById('institucion_fuerza_armada').value,
+                seguridad_maritima: document.querySelector('input[name="seguridad_maritima"]:checked').value,
+                especificar_cursos: document.getElementById('especificar_cursos').value
+            };
 
-    const motivacion = {
-        motivacion: document.getElementById('motivacion').value
-    };
+            const motivacion = {
+                motivacion: document.getElementById('motivacion').value
+            };
 
-    const datosFormulario = [
-        datosPersonales,
-        informacionAcademica,
-        datosFamiliares,
-        antecedentesMedicos,
-        antecedentesJudiciales,
-        experienciaMilitar,
-        motivacion
-    ];
+            const datosFormulario = {
+                datosPersonales,
+                informacionAcademica,
+                datosFamiliares,
+                antecedentesMedicos,
+                antecedentesJudiciales,
+                experienciaMilitar,
+                motivacion
+            };
 
-    localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
+            const clave = datosPersonales.documento_identidad;
+            localStorage.setItem(clave, JSON.stringify(datosFormulario));
 
-    alert('Datos guardados en localStorage');
+            toastr.success('Datos guardados en localStorage');
+            cargarListaAspirantes(); // Actualizar la lista de aspirantes
+        } catch (error) {
+            toastr.error('Ocurrió un error al guardar los datos. Por favor, inténtelo de nuevo.');
+        }
+    } else {
+        toastr.warning('Por favor, complete todos los campos obligatorios.');
+    }
 });
